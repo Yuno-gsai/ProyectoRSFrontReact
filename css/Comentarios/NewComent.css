@@ -9,7 +9,9 @@
     padding: 10px;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid #333; /* Borde más oscuro para modo oscuro */
+    background-color: #181818; /* Fondo oscuro */
+    color: #e1e8ed; /* Texto claro */
     resize: none;
     width: 100%;
   }
@@ -30,20 +32,20 @@
   }
   
   .btn-enviar-comentario {
-    background-color: #0d6efd;
+    background-color: #1DA1F2; /* Azul Twitter */
     color: white;
   }
   
   .btn-enviar-comentario:hover {
-    background-color: #0056b3;
+    background-color: #1a8cd8; /* Azul Twitter más oscuro */
   }
   
   .btn-cancelar-comentario {
-    background-color: #e0245e;
+    background-color: #e0245e; /* Rojo Twitter */
     color: white;
   }
   
   .btn-cancelar-comentario:hover {
-    background-color: #c81d47;
+    background-color: #b91d51; /* Rojo Twitter más oscuro */
   }
   

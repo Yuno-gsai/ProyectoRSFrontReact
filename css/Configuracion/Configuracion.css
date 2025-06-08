@@ -4,11 +4,11 @@
     width: 90%;
     margin: 30px auto;
     padding: 24px;
-    background-color: #ffffff;
+    background-color: #181818; /* Fondo oscuro */
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     font-family: "Segoe UI", sans-serif;
-    color: #14171a;
+    color: #e1e8ed; /* Texto claro */
     box-sizing: border-box;
   }
   
@@ -16,14 +16,14 @@
   .config-container h1 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-    color: #1da1f2;
+    color: #1DA1F2; /* Azul Twitter */
     text-align: center;
   }
   
   .config-container h2 {
     font-size: 1.3rem;
     margin-bottom: 14px;
-    color: #0d6efd;
+    color: #1DA1F2; /* Azul Twitter */
   }
   
   /* Inputs */
@@ -32,7 +32,7 @@
     padding: 10px 14px;
     margin-top: 6px;
     margin-bottom: 14px;
-    border: 1px solid #ccd6dd;
+    border: 1px solid #333; /* Borde más oscuro */
     border-radius: 8px;
     font-size: 15px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -61,7 +61,7 @@
   
   /* Botón cambiar contraseña */
   .config-container .btn-change-password {
-    background-color: #0d6efd;
+    background-color: #1DA1F2; /* Azul Twitter */
     color: white;
   }
   
@@ -78,10 +78,9 @@
   }
   
   .config-container .status.success {
-    color: green;
+    color: #17bf63; /* Verde Twitter */
   }
   
   .config-container .status.error {
-    color: red;
+    color: #e0245e; /* Rojo Twitter */
   }
-  

@@ -166,9 +166,6 @@ export const ContenedorMensajes = () => {
     };
   };
 
-  const handleVolver = () => {
-    setAmigoSeleccionado(null);
-  };
 
   return (
     <div className="contenedor-mensajes">
@@ -215,7 +212,6 @@ export const ContenedorMensajes = () => {
                       sx={{ width: 48, height: 48 }}
                     />
                   </Badge>
-
                   <div className="amigo-info">
                     <div className="amigo-nombre">{amigo.nombre}</div>
                     <div
@@ -233,12 +229,6 @@ export const ContenedorMensajes = () => {
 
       {(!pantallaPequena || amigoSeleccionado) && (
         <div className="panel-chat">
-          {pantallaPequena && amigoSeleccionado && (
-            <button className="boton-volver" onClick={handleVolver}>
-              ⬅ 
-            </button>
-          )}
-
           {amigoSeleccionado ? (
             <Mensajes
               destinatarioId={amigoSeleccionado.id}

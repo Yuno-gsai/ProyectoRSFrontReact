@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: column;
   height: 95vh; /* O el alto que prefieras fijo */
-  background-color: #ffffff;
+  background-color: #121212; /* Fondo oscuro */
   padding: 16px;
-  border: 1px solid #ddd; /* opcional, para distinguir el área */
+  border: 1px solid #333; /* Borde más oscuro */ /* opcional, para distinguir el área */
 }
 
 /* Lista de mensajes: ocupa todo el espacio disponible y permite scroll */
@@ -40,19 +40,19 @@
 }
 
 .mensaje-burbuja.remitente {
-  background-color: #dcf8c6;
-  color: #000000;
+  background-color: #1a3a4a; /* Azul oscuro para mensajes del remitente */
+  color: #e1e8ed; /* Texto claro */
 }
 
 .mensaje-burbuja.destinatario {
-  background-color: #f1f0f0;
-  color: #000000;
+  background-color: #2c2c2c; /* Fondo más oscuro para mensajes del destinatario */
+  color: #e1e8ed; /* Texto claro */
 }
 
 .mensaje-fecha {
   margin-top: 4px;
   font-size: 0.75rem;
-  color: #666666;
+  color: #a0a0a0; /* Texto gris claro */
 }
 
 /* Contenedor input + botón fijo abajo */
@@ -60,17 +60,19 @@
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  background-color: #ffffff;
-  border-top: 1px solid #ddd;
+  background-color: #181818; /* Fondo más oscuro */
+  border-top: 1px solid #333; /* Borde más oscuro */
   /* Opcional: puedes agregar sombra para mejor visibilidad */
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
 }
 
 /* Input de texto */
 .mensaje-input {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #333; /* Borde más oscuro */
+  background-color: #121212; /* Fondo más oscuro para inputs */
+  color: #e1e8ed; /* Texto claro */
   border-radius: 20px;
   font-size: 1rem;
   outline: none;
@@ -78,14 +80,14 @@
 }
 
 .mensaje-input:focus {
-  border-color: #40a9ff;
+  border-color: #1DA1F2; /* Azul Twitter */
 }
 
 /* Botón enviar */
 .mensaje-boton {
   margin-left: 10px;
   padding: 10px 16px;
-  background-color: #40a9ff;
+  background-color: #1DA1F2; /* Azul Twitter */
   border: none;
   border-radius: 20px;
   color: #ffffff;
@@ -95,7 +97,7 @@
 }
 
 .mensaje-boton:hover {
-  background-color: #1890ff;
+  background-color: #1a8cd8; /* Azul Twitter más oscuro */
 }
 
 
@@ -104,8 +106,8 @@
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  background-color: #181818; /* Fondo más oscuro */
+  border-bottom: 1px solid #333; /* Borde más oscuro */
 }
 
 .chat-header-foto {
@@ -118,7 +120,7 @@
 .chat-header-nombre {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: #e1e8ed; /* Texto claro */
 }
 
 /* Botón volver solo visible en pantallas pequeñas */
@@ -128,7 +130,7 @@
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  color: #1d72b8;
+  color: #1DA1F2; /* Azul Twitter */
 }
 
 @media (max-width: 768px) {

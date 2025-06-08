@@ -2,10 +2,10 @@
     max-width: 800px;
     margin: 1rem auto;
     padding: 1rem 1.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid #333; /* Borde más oscuro */
     border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background-color: #181818; /* Fondo oscuro */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     font-family: Arial, sans-serif;
   }
   
@@ -18,21 +18,23 @@
   .label-file {
     font-weight: 600;
     margin-bottom: 0.3rem;
-    color: #333;
+    color: #e1e8ed; /* Texto claro */
   }
   
   .textarea-content {
     resize: vertical;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid #bbb;
+    border: 1px solid #333; /* Borde más oscuro */
+    background-color: #121212; /* Fondo más oscuro para textarea */
+    color: #e1e8ed; /* Texto claro */
     border-radius: 6px;
     margin-bottom: 1rem;
     transition: border-color 0.3s ease;
   }
   
   .textarea-content:focus {
-    border-color: #007bff;
+    border-color: #1DA1F2; /* Azul Twitter */
     outline: none;
   }
   
@@ -58,21 +60,21 @@
   }
   
   .btn-submit {
-    background-color: #007bff;
+    background-color: #1DA1F2; /* Azul Twitter */
     color: white;
   }
   
   .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: #1a8cd8; /* Azul Twitter más oscuro */
   }
   
   .btn-cancel {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #2c2c2c; /* Fondo más oscuro para botón cancelar */
+    color: #e1e8ed; /* Texto claro */
   }
   
   .btn-cancel:hover {
-    background-color: #d6d6d6;
+    background-color: #3a3a3a; /* Fondo más oscuro al pasar el mouse */
   }
   
 
@@ -86,7 +88,7 @@
     display: inline-block;
     padding: 0.5rem 1rem;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #1DA1F2; /* Azul Twitter */
     color: white;
     border-radius: 6px;
     font-weight: 600;
@@ -98,8 +100,8 @@
   }
   
   .custom-file-upload:hover {
-    background-color: #0056b3;
-    border-color: #004085;
+    background-color: #1a8cd8; /* Azul Twitter más oscuro */
+    border-color: #1a8cd8; /* Azul Twitter más oscuro */
   }
   
   /* Opcional: para que el texto del nombre del archivo no sea muy largo */

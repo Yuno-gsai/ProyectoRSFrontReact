@@ -2,12 +2,12 @@
   max-width: 850px;
   width: 100%;
   margin: 20px auto;
-  background-color: #fff;
+  background-color: #181818; /* Fondo oscuro */
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", sans-serif;
-  color: #14171a;
+  color: #e1e8ed; /* Texto claro */
   box-sizing: border-box;
 }
 
@@ -24,7 +24,7 @@
   height: 110px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #1da1f2;
+  border: 2px solid #1DA1F2; /* Azul Twitter */
   flex-shrink: 0;
 }
 
@@ -40,13 +40,13 @@
 
 .profile-info p {
   margin: 4px 0;
-  color: #657786;
+  color: #a0a0a0; /* Texto gris claro */
   font-size: 0.95rem;
 }
 
 .profile-meta {
   font-size: 0.85rem;
-  color: #8899a6;
+  color: #6c757d; /* Texto gris más claro */
 }
 
 .profile-bio {

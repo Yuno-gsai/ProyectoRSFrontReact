@@ -31,8 +31,8 @@ export const NewLike = ({ publicationId, userID, likesCount, userHasLiked, likeI
         <button
             onClick={onLikeToggle}
             style={{
-                backgroundColor: liked ? "#0d6efd" : "#e0e0e0",
-                color: liked ? "white" : "black",
+                backgroundColor: liked ? "#0d6efd" : "#2c2c2c",
+                color: liked ? "white" : "white",
                 border: "none",
                 padding: "8px 12px",
                 borderRadius: "6px",
