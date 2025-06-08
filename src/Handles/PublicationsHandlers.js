@@ -28,7 +28,6 @@ export const usePublicationsHandlers = () => {
     }
   };
 
-  // Crear nueva publicación
   const handleCreatePublication = async (publicationData) => {
     try {
       const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
@@ -67,6 +66,7 @@ export const usePublicationsHandlers = () => {
       return null;
     }
   };
+
 
   // Obtener publicaciones de amigos
   const handleGetFriendsPublications = async () => {
