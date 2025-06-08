@@ -28,11 +28,12 @@ export const PerfilEdith = ({ onCancel }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Enviar la foto de perfil en base64
         await handleEditProfile({
             id: user.id,
             nombre_usuario: nombre,
             biografia: biografia,
-            foto_perfil: fotoPerfil, 
+            foto_perfil: fotoPerfil,  // Se envía la imagen como base64
         });
 
         handleLogin(user.correo, contrasena);
@@ -40,7 +41,7 @@ export const PerfilEdith = ({ onCancel }) => {
     };
 
     const handleDeletePhoto = () => {
-        setFotoPerfil("");
+        setFotoPerfil(""); // Elimina la foto de perfil
     };
 
     return (

@@ -12,4 +12,3 @@ createRoot(document.getElementById('root')).render(
 )
 
 
-//TODO:  Cambiar todos los metdos a post tanto en el fornt como en el back 

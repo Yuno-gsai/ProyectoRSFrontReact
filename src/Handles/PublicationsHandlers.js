@@ -39,7 +39,11 @@ export const usePublicationsHandlers = () => {
         body: JSON.stringify({
           controller: "Publications",  // Nombre del controlador
           method: "create",  // Método que ejecutará el controlador
-          data: publicationData,
+          data: {
+            usuario_id: user.id,
+            contenido: publicationData.contenido,
+            imagen: publicationData.imagen,
+          }
         }),
       });
   
