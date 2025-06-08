@@ -1,0 +1,165 @@
+import { useAuth } from "../Auths/Useauth";
+import { toast } from "react-toastify";
+
+export const useAuthHandlers = () => {
+    const { LogIn } = useAuth();
+
+    const handleLogin = async (email, password) => {
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "User", 
+                    method: "login",  
+                    data: {
+                        correo: email,
+                        contrasena: password,
+                    },
+                }),
+            });
+    
+            // Verificar si la respuesta es exitosa
+            if (response.ok) {
+                const data = await response.json();
+    
+                if (data.success && data.user) {
+                    LogIn(data.user);  // Aquí se maneja el login
+                    return data.user;
+                } else {
+                    toast.error(data.message || "Usuario o contraseña incorrecta");
+                    return null;
+                }
+            } else {
+                toast.error("Error en la conexión con el servidor");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la conexión:", error);
+            toast.error("Error en la conexión con el servidor");
+            return null;
+        }
+    };
+    
+    const getUser = async () => {
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "User",  // Nombre del controlador
+                    method: "all",  // Método que ejecutará el controlador
+                }),
+            });
+            return response.json();
+        } catch {
+            return null;
+        }
+    };
+
+    const handleRegister = async (UserData) => {
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "User",  // Nombre del controlador
+                    method: "create",  // Método que ejecutará el controlador
+                    data: UserData,
+                }),
+            });
+            const text = await response.text();
+            try {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    toast.success("Usuario registrado correctamente");
+                } else {
+                    toast.error("Error en el registro");
+                }
+            } catch {
+                console.error("Error en el registro:");
+                toast.error("Error al conectar con el servidor.");
+            }
+        } catch {
+            toast.error("Error en el registro");
+            return null;
+        }
+    };
+
+    const handleEditProfile = async (userData) => {
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "User",  // Nombre del controlador
+                    method: "update",  // Método que ejecutará el controlador
+                    data: {
+                        id: userData.id,
+                        nombre_usuario: userData.nombre_usuario,
+                        biografia: userData.biografia,
+                        foto_perfil: userData.foto_perfil,
+                    },
+                }),
+            });
+            const text = await response.text();
+            try {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    toast.success("Perfil actualizado correctamente");
+                } else {
+                    toast.error("Error en la actualización del perfil");
+                }
+            } catch {
+                console.error("Error en la actualización del perfil:");
+                toast.error("Error al conectar con el servidor.");
+            }
+        } catch {
+            toast.error("Error en la actualización del perfil");
+            return null;
+        }
+    };
+
+    const deleteCount = async (ID) => {
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "User",  // Nombre del controlador
+                    method: "delete",  // Método que ejecutará el controlador
+                    data: {
+                        id: ID,  // Enviar el ID para eliminar el usuario
+                    },
+                }),
+            });
+            const text = await response.text();
+            try {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    toast.success("Usuario eliminado correctamente");
+                } else {
+                    toast.error("Error en la eliminación del usuario");
+                }
+            } catch {
+                console.error("Error en la eliminación del usuario:");
+                toast.error("Error al conectar con el servidor.");
+            }
+        } catch {
+            toast.error("Error en la eliminación del usuario");
+            return null;
+        }
+    };
+
+    return { handleLogin, handleRegister, handleEditProfile, getUser, deleteCount };
+};

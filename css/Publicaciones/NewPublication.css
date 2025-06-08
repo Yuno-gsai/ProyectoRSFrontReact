@@ -1,0 +1,112 @@
+.new-publication-container {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1rem 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .new-publication-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label-textarea,
+  .label-file {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #333;
+  }
+  
+  .textarea-content {
+    resize: vertical;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .textarea-content:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .input-file {
+    margin-bottom: 1.5rem;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-submit,
+  .btn-cancel {
+    flex: 1;
+    padding: 0.5rem 0;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-submit {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-cancel {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #d6d6d6;
+  }
+  
+
+  /* Oculta el input file real */
+.input-file-hidden {
+    display: none;
+  }
+  
+  /* Estilo para la etiqueta que actúa como botón */
+  .custom-file-upload {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid transparent;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  /* Opcional: para que el texto del nombre del archivo no sea muy largo */
+  .custom-file-upload {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
