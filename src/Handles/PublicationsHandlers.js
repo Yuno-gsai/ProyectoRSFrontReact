@@ -4,7 +4,7 @@ export const usePublicationsHandlers = () => {
   const { user } = useAuth();
 
   // Obtener publicaciones de usuario
-  const handleGetUserPublications = async () => {
+  const handleGetUserPublications = async (userID) => {
     try {
       const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
         method: "POST",
@@ -20,7 +20,7 @@ export const usePublicationsHandlers = () => {
       const data = await response.json();
 
       // Filtrar las publicaciones que corresponden al usuario actual
-      const publicacionesDelUsuario = data.filter(pub => pub.usuario_id === user.id);
+      const publicacionesDelUsuario = data.filter(pub => pub.usuario_id === userID);
       return publicacionesDelUsuario;
     } catch (error) {
       console.error("Error al obtener publicaciones:", error.message);
@@ -92,7 +92,7 @@ export const usePublicationsHandlers = () => {
       return data;
     } catch (error) {
       console.error("Error al obtener publicaciones de amigos:", error);
-      return [];
+      return null;
     }
   };
 
@@ -123,5 +123,30 @@ export const usePublicationsHandlers = () => {
     }
   };
 
-  return { handleGetUserPublications, handleCreatePublication, handleGetFriendsPublications, deletePublication };
+  const GetDataByUserID = async (userID) =>{
+    try{
+      const response = await fetch(
+        `https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            controller: "Publications",  // Nombre del controlador
+            method: "GetPublicationsByUserID",  // Método que ejecutará el controlador
+            data: {
+              usuario_id: userID
+            },
+          }),
+        }
+      );
+      const data = await response.json();
+      return data;
+    }catch(error){
+      console.error("Error al obtener publicaciones de amigos:", error);
+      return null;
+    }
+  }
+  return { handleGetUserPublications, handleCreatePublication, handleGetFriendsPublications, deletePublication,GetDataByUserID };
 };

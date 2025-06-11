@@ -1,22 +1,95 @@
-.publicaciones-container {
-  max-width: 900px;
+.conten-container {
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #121212;
+  border-radius: 8px;
+}
+
+/* Friends Profile View */
+.friends-perfil-view {
+  width: 90%;
+  padding: 0;
+  margin: auto;
+  background-color: #121212;
+}
+
+/* Adjust the main layout inside FriendsPerfil */
+.friends-perfil-view .main-layout {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.friends-perfil-view .profile-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px 40px;
+  margin-left: 0;
+  box-sizing: border-box;
+}
+
+/* Adjust the left bar width */
+.friends-perfil-view .left-sidebar {
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+/* Adjust the main content when left bar is present */
+.friends-perfil-view .main-layout {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 992px) {
+  .friends-perfil-view .main-layout,
+  .friends-perfil-view .profile-container {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .friends-perfil-view .left-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .friends-perfil-view .left-sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+.friends-publications {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.friend-publication {
+  background-color: #181818;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
 }
 
 /* Tarjeta de cada publicación */
 .publicacion-card {
-  background-color: #181818; /* Fondo oscuro */
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: #181818;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* Header: foto y nombre */
@@ -26,6 +99,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+  padding: 15px 20px 0 20px;
 }
 
 /* Contenedor de foto y nombre */
@@ -169,3 +243,4 @@
     font-size: 11px;
   }
 }
+

@@ -1,15 +1,15 @@
 import "/css/Perfil/PerfilView.css";
-import { useAuth } from "../../Auths/Useauth";
 import { Publicacion } from "../Publications/Publications";
 import { NewPublication } from "../Publications/NewPublication";
 import { useState } from "react";
+import { useAuth } from "../../Auths/Useauth";
 
 export const PerfilView = ({onEdit})=>{
   const [showNewPublication, setShowNewPublication] = useState(false);
-    const { user } = useAuth();
     const onNewPublication = () => {
       setShowNewPublication(true);
     };
+    const { user } = useAuth();
     return(
         <div className="profile-container">
         <div className="profile-header">
@@ -35,7 +35,9 @@ export const PerfilView = ({onEdit})=>{
           <button className="buttonClass" onClick={onEdit}>Editar Perfil</button>
           <button className="buttonClass" onClick={onNewPublication}>Nueva Publicacion</button>
         </div>
-        {showNewPublication ? <NewPublication onCancel={() => setShowNewPublication(false)} /> : <Publicacion/>}
+        {showNewPublication ? <NewPublication onCancel={() => setShowNewPublication(false)} /> : 
+        <Publicacion userID={user.id}/>
+        }
       </div>
     )
 }

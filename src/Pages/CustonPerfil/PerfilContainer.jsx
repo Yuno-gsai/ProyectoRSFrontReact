@@ -10,7 +10,7 @@ export const PerfilContainer = () => {
             {editando ? (
                 <PerfilEdith onCancel={() => setEditando(false)} />
             ) : (
-                <PerfilView onEdit={() => setEditando(true)} />
+                <PerfilView onEdit={() => setEditando(true)}  />
             )}
         </>
     );

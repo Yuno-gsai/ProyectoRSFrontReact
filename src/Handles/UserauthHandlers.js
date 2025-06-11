@@ -161,5 +161,26 @@ export const useAuthHandlers = () => {
         }
     };
 
-    return { handleLogin, handleRegister, handleEditProfile, getUser, deleteCount };
+    const getUserDataById = async(id) =>{
+        try{
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify({
+                    controller: "User",
+                    method:"getUserByID",
+                    data:{
+                        id:id
+                    }   
+                })
+            })
+            return response.json();
+        }catch{
+            return null
+        }
+    }
+
+    return { handleLogin, handleRegister, handleEditProfile, getUser, deleteCount, getUserDataById };
 };
