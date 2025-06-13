@@ -33,7 +33,7 @@ export const useAuthHandlers = () => {
                     return null;
                 }
             } else {
-                toast.error("Error en la conexión con el servidor");
+                toast.error("Credenciales incorrectas");
                 return null;
             }
         } catch (error) {
@@ -106,7 +106,7 @@ export const useAuthHandlers = () => {
                         id: userData.id,
                         nombre_usuario: userData.nombre_usuario,
                         biografia: userData.biografia,
-                        foto_perfil: userData.foto_perfil,
+                        foto_perfil: userData.foto_perfil
                     },
                 }),
             });
@@ -180,7 +180,29 @@ export const useAuthHandlers = () => {
         }catch{
             return null
         }
+    };
+
+    const updataPassword = async (data) =>{
+        try {
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify({
+                    controller: "User",
+                    method:"update",
+                    data:{
+                        id:data.id,
+                        contrasena:data.contrasena
+                    }   
+                })
+            })
+            return response.json();
+        }catch{
+            return null
+        }
     }
 
-    return { handleLogin, handleRegister, handleEditProfile, getUser, deleteCount, getUserDataById };
+    return { handleLogin, handleRegister, handleEditProfile, getUser, deleteCount, getUserDataById,updataPassword };
 };

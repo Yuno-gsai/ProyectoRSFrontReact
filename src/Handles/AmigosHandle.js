@@ -152,29 +152,29 @@ export const useAmigosHandle = () => {
                 alert("error al aceptar solicitud")
             }
         }
-        const AgregarAmigo = async (data) =>{
-            try{
-                const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        controller: "Friends",  // Nombre del controlador
-                        method: "create",  // Método que ejecutará el controlador
-                        data: data,
-                    }),
-                });
-                if (!response.ok) {
-                    throw new Error("Error al agregar amigo");
-                }
-                console.log("Amigo agregado exitosamente");
+    const AgregarAmigo = async (data) =>{
+        try{
+            const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    controller: "Friends",  // Nombre del controlador
+                    method: "create",  // Método que ejecutará el controlador
+                    data: data,
+                }),
+            });
+            if (!response.ok) {
+                throw new Error("Error al agregar amigo");
             }
-            catch(error){
-                console.log(error)
-                alert("error al agregar amigo")
-            }
+            console.log("Amigo agregado exitosamente");
         }
+        catch(error){
+            console.log(error)
+            alert("error al agregar amigo")
+        }
+    }
 
     return { getAmigos, deleteAmigos, createSolicitud, getSolicitudes, deleteSolicitud, updateSolicitud, AgregarAmigo }
 }

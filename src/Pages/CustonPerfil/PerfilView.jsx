@@ -26,7 +26,7 @@ export const PerfilView = ({onEdit})=>{
             <h2>{user.nombre_usuario}</h2>
             <p>{user.correo}</p>
             <p className="profile-meta">Miembro desde: {new Date(user.creado_en).toLocaleDateString()}</p>
-            <div className="profile-bio">
+            <div >
               {user.biografia || "Biografia No Disponible"}
             </div>
           </div>

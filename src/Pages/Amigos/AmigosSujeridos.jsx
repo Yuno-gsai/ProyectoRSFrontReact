@@ -147,7 +147,7 @@ export const AmigosSugeridos = () => {
               src={
                 u.foto_perfil
                   ? `${u.foto_perfil}`
-                  : 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2RkZGRkZCIgZD0iTTEyLDEyQzkuOCwxMiw4LDEwLjIsOCw4QzgsNS44LDkuOCw0LDEyLDRTMTYsNS44LDE2LDhDMTYsMTAuMiwxNC4yLDEyLDEyLDEyTTEyLDE0QzguNywxNCA0LDE1LjIsNCwxOFYyMEgyMFYxOEMyMCwxNS4zLDE1LjMsMTQsMTIsMTRaIiAvPjwvc3ZnPg=='
+                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
               }
               alt={u.nombre_usuario}
               className="amigo-foto-casual"

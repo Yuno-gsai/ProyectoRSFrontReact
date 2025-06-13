@@ -120,7 +120,7 @@ export const Solicitudes = () => {
             src={
               solicitud.solicitante_foto_perfil
                 ? `${solicitud.solicitante_foto_perfil}`
-                : "https://via.placeholder.com/50"
+                : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
             }
             alt={solicitud.solicitante_nombre_usuario}
             className="amigo-foto-casual"

@@ -12,7 +12,7 @@ export const Configuracion = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { handleEditProfile, deleteCount } = useAuthHandlers();
+  const { deleteCount,updataPassword } = useAuthHandlers();
 
   // Función simulada para cambiar contraseña (debes conectar con backend)
   const handleChangePassword = async () => {
@@ -35,7 +35,7 @@ export const Configuracion = () => {
     }
     
     try {
-      await handleEditProfile({ contrasena: newPassword });
+      await updataPassword({contrasena:newPassword,id:user.id});
 
       setStatusMessage("Contraseña cambiada con éxito.");
       setCurrentPassword("");

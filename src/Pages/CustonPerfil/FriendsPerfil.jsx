@@ -192,7 +192,7 @@ export const FriendsPerfil = ({ userid, onClose }) => {
             <p className="profile-meta">
               Miembro desde: {new Date(UserData.creado_en).toLocaleDateString()}
             </p>
-            <div className="profile-bio">
+            <div>
               {UserData.biografia || "Biografía no disponible"}
             </div>
           </div>
