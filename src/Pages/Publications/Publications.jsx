@@ -77,10 +77,10 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
         <div className="acciones-publicacion">
           <NewLike
             publicationId={pub.id}
-            userID={userID}
+            userID={user.id}
             likesCount={pub.totalLikes || 0}
-            userHasLiked={pub.likes?.some(like => like.usuario_id === userID) || false}
-            likeId={pub.likes?.find(like => like.usuario_id === userID)?.id}
+            userHasLiked={pub.likes?.some(like => like.usuario_id === user.id) || false}
+            likeId={pub.likes?.find(like => like.usuario_id === user.id)?.id}
           />
           <button 
             className="buttonClass"
@@ -97,7 +97,7 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
           {comentarioEnEdicion === pub.id && (
             <NewComent
               publicationId={pub.id}
-              userId={userID}
+              userId={user.id}
               onNuevoComentario={handleCancelComentario}
             />
           )}
