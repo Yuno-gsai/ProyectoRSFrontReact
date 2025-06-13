@@ -42,7 +42,6 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
   };
 
   const renderPublication = (pub) => {
-    // Verificar si el usuario actual es el dueño de la publicación
     const isOwner = user && user.id === pub.usuario_id;
     
     return (

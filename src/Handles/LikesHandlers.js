@@ -9,10 +9,10 @@ export const useLikesHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Likes",  // Nombre del controlador
-                    method: "create",  // Método que ejecutará el controlador
+                    controller: "Likes", 
+                    method: "create", 
                     data: Data,
-                }), // stringify porque envías JSON
+                }), 
             });
     
             const text = await response.text();
@@ -44,10 +44,10 @@ export const useLikesHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Likes",  // Nombre del controlador
-                    method: "delete",  // Método que ejecutará el controlador
+                    controller: "Likes", 
+                    method: "delete", 
                     data: {
-                        id: likeId,  // Enviar el ID para eliminar el like
+                        id: likeId, 
                     },
                 }),
             });

@@ -28,14 +28,12 @@ export const Solicitudes = () => {
           throw new Error("Datos inválidos");
         }
 
-        // Filtrar solicitudes pendientes para el usuario actual
         const solicitudesFiltradas = solicitudesData.filter(
           (sol) => sol.solicitado_id === user.id && sol.estado === "pendiente"
         );
 
         setUsuarios(usuariosData);
 
-        // Agregar info del solicitante a cada solicitud
         const solicitudesConInfo = solicitudesFiltradas.map((sol) => {
           const solicitanteInfo = usuariosData.find(u => u.id === sol.solicitante_id);
           return {
@@ -62,16 +60,13 @@ export const Solicitudes = () => {
     }
   }, [user?.id]);
 
-  // Manejar aceptación de solicitud y agregar amistad
   const handleAceptar = async (idSolicitud) => {
     try {
       await updateSolicitud(idSolicitud, "aceptada");
 
-      // Buscar la solicitud para obtener IDs
       const solicitud = solicitudes.find(s => s.id === idSolicitud);
       if (!solicitud) {
         console.warn("Solicitud no encontrada localmente");
-        // Opcional: podrías refrescar datos aquí
       } else {
         const dataAmistad = {
           usuario1_id: solicitud.solicitante_id,
@@ -80,7 +75,6 @@ export const Solicitudes = () => {
         await AgregarAmigo(dataAmistad);
       }
 
-      // Remover solicitud aceptada del estado
       setSolicitudes(prev => prev.filter(s => s.id !== idSolicitud));
     } catch (error) {
       console.error("Error aceptando solicitud o agregando amistad:", error);
@@ -88,7 +82,6 @@ export const Solicitudes = () => {
     }
   };
 
-  // Manejar rechazo de solicitud
   const handleRechazar = async (idSolicitud) => {
     try {
       await deleteSolicitud(idSolicitud);

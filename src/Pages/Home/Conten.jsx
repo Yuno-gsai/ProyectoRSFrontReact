@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { usePublicationsHandlers } from "../../Handles/PublicationsHandlers";
-// Removed unused import
 import { FriendsPerfil } from "../CustonPerfil/FriendsPerfil";
 import { Publicacion } from "../Publications/Publications";
 import "/css/Conten/Conten.css";

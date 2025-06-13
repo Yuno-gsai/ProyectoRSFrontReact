@@ -9,19 +9,18 @@ export const AmigosSugeridos = () => {
   const { user } = useAuth();
   const [usuarios, setUsuarios] = useState([]);
   const [solicitudes, setSolicitudes] = useState([]);
-  const [amigos, setAmigos] = useState([]); // <-- Estado para guardar amigos actuales
+  const [amigos, setAmigos] = useState([]); 
   const { createSolicitud, getSolicitudes, deleteSolicitud, getAmigos } = useAmigosHandle();
 
   useEffect(() => {
     const fetchDatos = async () => {
       try {
-        // 1) Obtener usuarios
         const usuariosData = await getUser();
         if (!Array.isArray(usuariosData)) {
           console.error("Datos de usuarios no válidos:", usuariosData);
           setUsuarios([]);
         } else {
-          // 2) Obtener amigos para excluirlos de sugeridos
+          
           let amigosData = [];
           try {
             amigosData = await getAmigos();
@@ -31,10 +30,8 @@ export const AmigosSugeridos = () => {
             setAmigos([]);
           }
 
-          // Crear set con IDs de amigos para filtrar rápido
           const amigosIds = new Set(
             amigosData.map((a) => {
-              // Asumiendo que la amistad tiene usuario1_id y usuario2_id, y queremos el ID del amigo, no el usuario actual
               if (a.usuario1_id === user?.id) return a.usuario2_id;
               else return a.usuario1_id;
             })
@@ -44,13 +41,12 @@ export const AmigosSugeridos = () => {
           const hace7Dias = new Date();
           hace7Dias.setDate(ahora.getDate() - 7);
 
-          // 3) Filtrar usuarios para sugeridos
           const filtrados = usuariosData.filter(
             (u) =>
               u &&
               u.id &&
-              u.id !== user?.id && // No el usuario actual
-              !amigosIds.has(u.id) && // No amigos actuales
+              u.id !== user?.id && 
+              !amigosIds.has(u.id) && 
               u.creado_en &&
               new Date(u.creado_en) >= hace7Dias
           );
@@ -58,7 +54,6 @@ export const AmigosSugeridos = () => {
           setUsuarios(filtrados);
         }
 
-        // 4) Obtener solicitudes pendientes actuales
         try {
           const solicitudesData = await getSolicitudes();
           if (Array.isArray(solicitudesData)) {
@@ -85,7 +80,6 @@ export const AmigosSugeridos = () => {
     fetchDatos();
   }, [getUser, getSolicitudes, getAmigos, user]);
 
-  // El resto del código sigue igual
   const handleAgregarAmigo = async (userId) => {
     if (!user?.id) {
       console.error("Usuario no autenticado");

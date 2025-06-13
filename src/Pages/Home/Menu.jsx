@@ -11,7 +11,6 @@ export const Menu = () => {
 
     return (
         <div className="menu-container">
-        {/* Botón hamburguesa solo visible en móviles */}
         <button 
             className="hamburger-btn" 
             onClick={toggleSidebar} 
@@ -20,11 +19,10 @@ export const Menu = () => {
             ☰
         </button>
 
-        {/* Sidebar recibe estado para mostrar o ocultar */}
         <LeftBar 
             onSelect={(item) => {
             setSelected(item);
-            setSidebarOpen(false); // cerrar sidebar al seleccionar en móvil
+            setSidebarOpen(false); 
             }} 
             selected={selected} 
             isOpen={sidebarOpen}

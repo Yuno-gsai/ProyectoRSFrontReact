@@ -33,8 +33,8 @@ export const Mensajes = ({ destinatarioId, destinatarioInfo, onVolver }) => {
           "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          controller: "Mensajes",  // Nombre del controlador
-          method: "obtenerMensajesHandler",  // Método que ejecutará el controlador
+          controller: "Mensajes",  
+          method: "obtenerMensajesHandler",  
           data: {
               remitente_id: user.id,
               destinatario_id: destinatarioId,
@@ -76,8 +76,8 @@ export const Mensajes = ({ destinatarioId, destinatarioInfo, onVolver }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          controller: "Mensajes",  // Nombre del controlador
-          method: "crearMensajeHandler",  // Método que ejecutará el controlador
+          controller: "Mensajes",  
+          method: "crearMensajeHandler",  
           data: mensajeObj,
         }),
       });
@@ -94,9 +94,7 @@ export const Mensajes = ({ destinatarioId, destinatarioInfo, onVolver }) => {
 
   return (
     <div className="mensajes-contenedor">
-      {/* Encabezado del chat */}
       <div className="chat-header">
-        {/* Botón volver visible solo en móvil */}
         <button className="btn-volver" onClick={onVolver}>
           ⬅
         </button>

@@ -3,7 +3,6 @@ import { useAuth } from "../Auths/Useauth";
 export const usePublicationsHandlers = () => {
   const { user } = useAuth();
 
-  // Obtener publicaciones de usuario
   const handleGetUserPublications = async (userID) => {
     try {
       const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
@@ -12,14 +11,13 @@ export const usePublicationsHandlers = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          controller: "Publications",  // Nombre del controlador
-          method: "all",  // Método que ejecutará el controlador
+          controller: "Publications", 
+          method: "all", 
         }),
       });
 
       const data = await response.json();
 
-      // Filtrar las publicaciones que corresponden al usuario actual
       const publicacionesDelUsuario = data.filter(pub => pub.usuario_id === userID);
       return publicacionesDelUsuario;
     } catch (error) {
@@ -36,8 +34,8 @@ export const usePublicationsHandlers = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          controller: "Publications",  // Nombre del controlador
-          method: "create",  // Método que ejecutará el controlador
+          controller: "Publications", 
+          method: "create", 
           data: {
             usuario_id: user.id,
             contenido: publicationData.contenido,
@@ -68,20 +66,18 @@ export const usePublicationsHandlers = () => {
   };
 
 
-  // Obtener publicaciones de amigos
   const handleGetFriendsPublications = async () => {
     try {
-      // Usar parámetros en la URL (query parameters) para la solicitud GET
       const response = await fetch(
         `https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net`,
         {
-          method: "POST", // Usamos GET para obtener los datos
+          method: "POST", 
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            controller: "Publications",  // Nombre del controlador
-            method: "amigos",  // Método que ejecutará el controlador
+            controller: "Publications", 
+            method: "amigos", 
             data: {
               usuario_id: user.id,
             },
@@ -96,7 +92,6 @@ export const usePublicationsHandlers = () => {
     }
   };
 
-  // Eliminar publicación
   const deletePublication = async (ID) => {
     try {
       const response = await fetch(
@@ -107,10 +102,10 @@ export const usePublicationsHandlers = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            controller: "Publications",  // Nombre del controlador
-            method: "delete",  // Método que ejecutará el controlador
+            controller: "Publications", 
+            method: "delete", 
             data: {
-              id: ID,  // Enviar el ID para eliminar la publicación
+              id: ID, 
             },
           }),
         }
@@ -133,8 +128,8 @@ export const usePublicationsHandlers = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            controller: "Publications",  // Nombre del controlador
-            method: "GetPublicationsByUserID",  // Método que ejecutará el controlador
+            controller: "Publications", 
+            method: "GetPublicationsByUserID", 
             data: {
               usuario_id: userID
             },

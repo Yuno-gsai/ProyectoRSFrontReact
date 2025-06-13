@@ -21,12 +21,11 @@ export const useAuthHandlers = () => {
                 }),
             });
     
-            // Verificar si la respuesta es exitosa
             if (response.ok) {
                 const data = await response.json();
     
                 if (data.success && data.user) {
-                    LogIn(data.user);  // Aquí se maneja el login
+                    LogIn(data.user);  
                     return data.user;
                 } else {
                     toast.error(data.message || "Usuario o contraseña incorrecta");
@@ -51,8 +50,8 @@ export const useAuthHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "User",  // Nombre del controlador
-                    method: "all",  // Método que ejecutará el controlador
+                    controller: "User", 
+                    method: "all", 
                 }),
             });
             return response.json();
@@ -69,8 +68,8 @@ export const useAuthHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "User",  // Nombre del controlador
-                    method: "create",  // Método que ejecutará el controlador
+                    controller: "User", 
+                    method: "create", 
                     data: UserData,
                 }),
             });
@@ -100,8 +99,8 @@ export const useAuthHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "User",  // Nombre del controlador
-                    method: "update",  // Método que ejecutará el controlador
+                    controller: "User", 
+                    method: "update", 
                     data: {
                         id: userData.id,
                         nombre_usuario: userData.nombre_usuario,
@@ -136,10 +135,10 @@ export const useAuthHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "User",  // Nombre del controlador
-                    method: "delete",  // Método que ejecutará el controlador
+                    controller: "User", 
+                    method: "delete", 
                     data: {
-                        id: ID,  // Enviar el ID para eliminar el usuario
+                        id: ID, 
                     },
                 }),
             });
@@ -169,7 +168,7 @@ export const useAuthHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body:JSON.stringify({
-                    controller: "User",
+                    controller: "User", 
                     method:"getUserByID",
                     data:{
                         id:id

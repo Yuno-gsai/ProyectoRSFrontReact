@@ -9,28 +9,26 @@ export const NewComent = ({ publicationId, userId, onNuevoComentario }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!contenido.trim()) return; // Evitar comentarios vacíos
+    if (!contenido.trim()) return;
 
     try {
-      // Crear un nuevo comentario
       await handleCreateComentario({
         publicacion_id: publicationId,
         usuario_id: userId,
         contenido: contenido.trim(),
       });
 
-      setContenido(""); // Limpiar el campo de texto
+      setContenido("");
 
-      if (onNuevoComentario) onNuevoComentario(); // Llamar a la función de callback para cancelar la edición
+      if (onNuevoComentario) onNuevoComentario();
     } catch (error) {
       console.error("Error al crear comentario:", error);
     }
   };
 
-  // Función para manejar la cancelación
   const handleCancel = () => {
-    setContenido(""); // Limpiar el campo de texto
-    if (onNuevoComentario) onNuevoComentario(); // Llamar para cancelar la edición
+    setContenido("");
+    if (onNuevoComentario) onNuevoComentario();
   };
 
   return (
@@ -50,7 +48,7 @@ export const NewComent = ({ publicationId, userId, onNuevoComentario }) => {
         <button
           type="button"
           className="btn-cancelar-comentario"
-          onClick={handleCancel} // Llama a la función de cancelar
+          onClick={handleCancel}
         >
           Cancelar
         </button>

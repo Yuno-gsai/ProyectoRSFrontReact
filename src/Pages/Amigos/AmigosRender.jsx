@@ -8,14 +8,13 @@ import { useAuthHandlers } from "../../Handles/UserauthHandlers";
 import { Solicitudes } from "./Solicitudes";
 
 export const AmigosRender = () => {
-  const { getAmigos, deleteAmigos } = useAmigosHandle(); // Función para traer amistades del usuario actual
-  const { user } = useAuth(); // Usuario actual
-  const [amigos, setAmigos] = useState([]); // Lista de amistades
-  const [usuariosList, setUsuariosList] = useState([]); // Lista de todos los usuarios (para buscar la biografía del amigo)
-  const [vista, setVista] = useState("amigos"); // "amigos" | "sugeridos" | "buscar"
-  const { getUser } = useAuthHandlers(); // Función para traer todos los usuarios registrados
+  const { getAmigos, deleteAmigos } = useAmigosHandle(); 
+  const { user } = useAuth(); 
+  const [amigos, setAmigos] = useState([]); 
+  const [usuariosList, setUsuariosList] = useState([]); 
+  const [vista, setVista] = useState("amigos"); 
+  const { getUser } = useAuthHandlers(); 
 
-  // 1) Efecto para cargar, al inicio, la lista de todos los usuarios
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
@@ -32,13 +31,10 @@ export const AmigosRender = () => {
       }
     };
     
-    // Solo cargar si no hay usuarios cargados previamente
     if (usuariosList.length === 0) {
       fetchUsuarios();
     }
   }, [getUser, usuariosList.length]);
-
-  // 2) Efecto para cargar la lista de amigos del usuario actual, cuando 'vista' esté en "amigos"
   useEffect(() => {
     const fetchAmigos = async () => {
       try {
@@ -60,12 +56,10 @@ export const AmigosRender = () => {
     }
   }, [getAmigos, vista]);
 
-  // 3) Función que normaliza el objeto "amistad" para extraer sólo los datos del amigo (y no del usuario actual)
   const obtenerAmigo = (amistad) => {
     if (!user || !amistad) return null;
 
     try {
-      // Si en la relación de amistad el usuario actual es usuario1, el amigo es usuario2
       if (amistad.usuario1_id === user.id) {
         return {
           id: amistad.usuario2_id,
@@ -74,7 +68,6 @@ export const AmigosRender = () => {
           amistadId: amistad.amistad_id,
         };
       } else {
-        // En caso contrario, el amigo es usuario1
         return {
           id: amistad.usuario1_id,
           nombre: amistad.usuario1_nombre || 'Usuario sin nombre',
@@ -88,7 +81,6 @@ export const AmigosRender = () => {
     }
   };
 
-  // 4) Handler para eliminar a un amigo
   const handleEliminar = async (amistadId) => {
     if (!amistadId) {
       console.error("ID de amistad no válido");
@@ -99,7 +91,6 @@ export const AmigosRender = () => {
     
     try {
       await deleteAmigos(amistadId);
-      // Luego de eliminar, actualizamos la lista local sin hacer otra petición
       setAmigos(prevAmigos => 
         prevAmigos.filter(amigo => amigo.amistad_id !== amistadId)
       );
@@ -140,14 +131,12 @@ export const AmigosRender = () => {
         </button>
       </div>
 
-      {/* Vista de "Sugeridos" */}
       {vista === "sugeridos" && (
         <div style={{ marginTop: 20, fontStyle: "italic", color: "#666" }}>
           <AmigosSugeridos />
         </div>
       )}
 
-      {/* Vista de "Amigos" */}
       {vista === "amigos" && (
         <div className="amigos-lista">
           {amigos.length === 0 ? (
@@ -157,12 +146,9 @@ export const AmigosRender = () => {
               const amigo = obtenerAmigo(amistad);
               if (!amigo) return null;
 
-              // 5) Buscamos en usuariosList el objeto del amigo para obtener su biografía
               const usuarioEncontrado = Array.isArray(usuariosList) 
                 ? usuariosList.find(u => u && u.id === amigo.id)
                 : null;
-
-              // Si no se encontró (quizá aún no cargó la lista completa), mostramos un texto por defecto
               const descripcionMostrada = usuarioEncontrado && usuarioEncontrado.biografia 
                 ? usuarioEncontrado.biografia 
                 : "Sin descripción disponible";
@@ -199,13 +185,11 @@ export const AmigosRender = () => {
         </div>
       )}
 
-      {/* Vista de "Buscar" */}
       {vista === "buscar" && (
         <div style={{ marginTop: 20, fontStyle: "italic", color: "#666" }}>
           <BuscarAmigos />
         </div>
       )}
-      {/* Vista de "Solicitudes" */}
       {vista === "solicitudes" && (
         <div style={{ marginTop: 20, fontStyle: "italic", color: "#666" }}>
           <Solicitudes />

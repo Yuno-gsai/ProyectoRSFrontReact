@@ -1,7 +1,7 @@
 import { useAuth } from "../../Auths/Useauth";
 
 export const LeftBar = ({ onSelect, selected, isOpen }) => {
-  const { user, LogOut } = useAuth();
+    const { user, LogOut } = useAuth();
 
     return (
         <aside className={`left-sidebar ${isOpen ? "open" : ""}`}>

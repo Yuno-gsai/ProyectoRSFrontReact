@@ -6,15 +6,14 @@ export const useAmigosHandle = () => {
 
     const getAmigos = useCallback(async () => {
         try {
-      // Cambiar el método a POST, ya que se está enviando un cuerpo
         const response = await fetch("https://backenphp-fxayemg5hnbtewb5.canadacentral-01.azurewebsites.net", {
-        method: "POST",  // Usar POST en lugar de GET
+        method: "POST", 
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            controller: "Friends",  // Nombre del controlador
-            method: "all"  // Método que ejecutará el controlador
+            controller: "Friends", 
+            method: "all" 
         }),
         });
   
@@ -42,10 +41,10 @@ export const useAmigosHandle = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Friends",  // Nombre del controlador
-                    method: "delete",  // Método que ejecutará el controlador
+                    controller: "Friends", 
+                    method: "delete", 
                     data: {
-                        id: ID,  // Enviar el ID para eliminar el amigo
+                        id: ID, 
                     },
                 }),
             });
@@ -67,8 +66,8 @@ export const useAmigosHandle = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "solicitud",  // Nombre del controlador
-                    method: "create",  // Método que ejecutará el controlador
+                    controller: "solicitud", 
+                    method: "create", 
                     data: data,
                 }),
             });
@@ -90,8 +89,8 @@ export const useAmigosHandle = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "solicitud",  // Nombre del controlador
-                    method: "all"  // Método que ejecutará el controlador
+                    controller: "solicitud", 
+                    method: "all" 
                 }),
             });
             const data = await response.json();
@@ -109,10 +108,10 @@ export const useAmigosHandle = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "solicitud",  // Nombre del controlador
-                    method: "delete",  // Método que ejecutará el controlador
+                    controller: "solicitud", 
+                    method: "delete", 
                     data: {
-                        id: ID,  // Enviar el ID para eliminar el amigo
+                        id: ID, 
                     },
                 }),
             });
@@ -134,10 +133,10 @@ export const useAmigosHandle = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        controller: "solicitud",  // Nombre del controlador
-                        method: "update",  // Método que ejecutará el controlador
+                        controller: "solicitud", 
+                        method: "update", 
                         data: {
-                            id: ID,  // Enviar el ID para eliminar el amigo
+                            id: ID, 
                             estado: estado,
                         },
                     }),
@@ -160,8 +159,8 @@ export const useAmigosHandle = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Friends",  // Nombre del controlador
-                    method: "create",  // Método que ejecutará el controlador
+                    controller: "Friends", 
+                    method: "create", 
                     data: data,
                 }),
             });

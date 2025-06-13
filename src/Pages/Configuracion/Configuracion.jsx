@@ -14,7 +14,6 @@ export const Configuracion = () => {
 
   const { deleteCount,updataPassword } = useAuthHandlers();
 
-  // Función simulada para cambiar contraseña (debes conectar con backend)
   const handleChangePassword = async () => {
     setErrorMessage("");
     setStatusMessage("");
@@ -46,7 +45,6 @@ export const Configuracion = () => {
     }
   };
 
-  // Función para eliminar cuenta (con confirmación)
   const handleDeleteAccount = async () => {
     const confirmed = window.confirm(
       "¿Estás seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer."

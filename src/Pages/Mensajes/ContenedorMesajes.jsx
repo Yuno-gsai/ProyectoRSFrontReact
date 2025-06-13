@@ -38,8 +38,8 @@ export const ContenedorMensajes = () => {
               "Content-Type": "application/json",
           },
           body: JSON.stringify({
-              controller: "Mensajes",  // Nombre del controlador
-              method: "obtenerAmigosConEstado",  // Método que ejecutará el controlador
+              controller: "Mensajes",  
+              method: "obtenerAmigosConEstado",  
               data: {
                   usuario_id: user.id,
               },
@@ -81,8 +81,8 @@ export const ContenedorMensajes = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            controller: "Mensajes",  // Nombre del controlador
-            method: "marcarChatComoLeido",  // Método que ejecutará el controlador
+            controller: "Mensajes",  
+            method: "marcarChatComoLeido",  
             data: {
               usuario_id: user.id,
               amigo_id: amigoSeleccionado.id,

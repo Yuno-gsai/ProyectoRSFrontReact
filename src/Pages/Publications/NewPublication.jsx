@@ -6,16 +6,15 @@ import { useAuth } from "../../Auths/Useauth";
 export const NewPublication = ({ onCancel }) => {
     const [content, setContent] = useState("");
     const { handleCreatePublication } = usePublicationsHandlers();
-    const [foto, setFoto] = useState(null); // Imagen en base64
+    const [foto, setFoto] = useState(null); 
     const { user } = useAuth();
 
-    // Convertir archivo a base64
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setFoto(reader.result); // ← base64 como texto
+                setFoto(reader.result); 
             };
             reader.readAsDataURL(file);
         } else {
@@ -29,12 +28,12 @@ export const NewPublication = ({ onCancel }) => {
         const data = {
             usuario_id: user.id,
             contenido: content,
-            imagen: foto,  // Aquí se pasa la imagen en base64
+            imagen: foto, 
         };
 
         await handleCreatePublication(data);
 
-        onCancel(); // Cerrar el formulario después de enviar
+        onCancel(); 
     };
 
     return (
@@ -79,7 +78,6 @@ export const NewPublication = ({ onCancel }) => {
                 </div>
             </form>
 
-            {/* Vista previa de la imagen (opcional) */}
             {foto && foto.startsWith("data:image") && (
                 <div className="preview">
                     <p>Vista previa de la imagen:</p>

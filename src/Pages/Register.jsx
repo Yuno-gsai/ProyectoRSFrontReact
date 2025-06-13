@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuthHandlers } from "../Handles/UserauthHandlers";
 import { useNavigate } from "react-router-dom";
-import { enviarCorreoBienvenida } from "../utils/emailUtils"; // <-- Asegúrate de tener este archivo creado
+import { enviarCorreoBienvenida } from "../utils/emailUtils"; 
 import "/css/Login/Register.css";
 
 export const Register = () => {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [error, setError] = useState("");

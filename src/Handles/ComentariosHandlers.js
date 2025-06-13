@@ -7,8 +7,8 @@ export const useComentariosHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Coments",  // Nombre del controlador
-                    method: "create",  // Método que ejecutará el controlador
+                    controller: "Coments", 
+                    method: "create", 
                     data: data,
                 }),
             });
@@ -30,10 +30,10 @@ export const useComentariosHandlers = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    controller: "Coments",  // Nombre del controlador
-                    method: "delete",  // Método que ejecutará el controlador
+                    controller: "Coments", 
+                    method: "delete", 
                     data: {
-                        id: comentarioId,  // Enviar el ID para eliminar el comentario
+                        id: comentarioId, 
                     },
                 }),
             });

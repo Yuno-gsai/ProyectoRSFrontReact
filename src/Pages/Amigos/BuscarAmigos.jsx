@@ -12,15 +12,13 @@ export const BuscarAmigos = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [solicitudes, setSolicitudes] = useState([]);
-  const [amigos, setAmigos] = useState([]); // <-- Estado para amigos actuales
+  const [amigos, setAmigos] = useState([]); 
 
   useEffect(() => {
     const fetchDatos = async () => {
       try {
-        // Obtener usuarios
         const usuariosData = await getUser();
 
-        // Obtener amigos para filtrar
         let amigosData = [];
         try {
           amigosData = await getAmigos();
@@ -30,16 +28,13 @@ export const BuscarAmigos = () => {
           setAmigos([]);
         }
 
-        // Crear set con IDs de amigos para filtrar rápido
         const amigosIds = new Set(
           amigosData.map((a) => {
-            // Aquí asumimos que amistad tiene usuario1_id y usuario2_id
             if (a.usuario1_id === user?.id) return a.usuario2_id;
             else return a.usuario1_id;
           })
         );
 
-        // Filtrar usuarios excluyendo a usuario actual y amigos
         if (Array.isArray(usuariosData)) {
           const usuariosFiltrados = usuariosData.filter(
             (u) => u && u.id !== user?.id && !amigosIds.has(u.id)
@@ -50,7 +45,6 @@ export const BuscarAmigos = () => {
           setUsuarios([]);
         }
 
-        // Obtener solicitudes pendientes
         try {
           const solicitudesData = await getSolicitudes();
           if (Array.isArray(solicitudesData)) {
@@ -77,7 +71,6 @@ export const BuscarAmigos = () => {
     fetchDatos();
   }, [getUser, getSolicitudes, getAmigos, user]);
 
-  // Función para agregar solicitud de amistad
   const handleAgregarAmigo = async (userId) => {
     const data = {
       solicitante_id: user.id,
@@ -92,7 +85,6 @@ export const BuscarAmigos = () => {
     }
   };
 
-  // Función para cancelar solicitud pendiente
   const handleCancelarSolicitud = async (userId) => {
     try {
       const solicitud = solicitudes.find(
@@ -108,11 +100,9 @@ export const BuscarAmigos = () => {
     }
   };
 
-  // Saber si hay solicitud pendiente para un usuario
   const solicitudPendiente = (userId) =>
     solicitudes.some((s) => s.solicitado_id === userId);
 
-  // Filtrado por texto en nombre o email (solo si hay búsqueda)
   const usuariosBuscados =
     busqueda.trim() === ""
       ? []

@@ -13,13 +13,12 @@ export const PerfilEdith = ({ onCancel }) => {
     const [fotoPerfil, setFotoPerfil] = useState(user.foto_perfil || "");
     const [contrasena, setContrasena] = useState(user.contrasena || "");
 
-    // Convertir archivo a base64
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setFotoPerfil(reader.result); // ← base64 como texto
+                setFotoPerfil(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -28,12 +27,11 @@ export const PerfilEdith = ({ onCancel }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Enviar la foto de perfil en base64
         await handleEditProfile({
             id: user.id,
             nombre_usuario: nombre,
             biografia: biografia,
-            foto_perfil: fotoPerfil,  // Se envía la imagen como base64
+            foto_perfil: fotoPerfil,
         });
 
         handleLogin(user.correo, contrasena);
@@ -41,7 +39,7 @@ export const PerfilEdith = ({ onCancel }) => {
     };
 
     const handleDeletePhoto = () => {
-        setFotoPerfil(""); // Elimina la foto de perfil
+        setFotoPerfil(""); 
     };
 
     return (
@@ -96,7 +94,6 @@ export const PerfilEdith = ({ onCancel }) => {
                 </div>
             </form>
 
-            {/* Vista previa (opcional) */}
             {fotoPerfil && fotoPerfil.startsWith("data:image") && (
                 <div className="preview">
                     <p>Vista previa:</p>
