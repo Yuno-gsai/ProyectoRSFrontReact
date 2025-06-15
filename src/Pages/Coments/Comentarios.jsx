@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "/css/Comentarios/Coments.css";
 import { useComentariosHandlers } from "../../Handles/ComentariosHandlers";
-import {    useAuth } from "../../Auths/Useauth";
+import { useAuth } from "../../Auths/Useauth";
 
-export const Comentarios = ({ comentarios }) => {
+export const Comentarios = ({ comentarios, onActualizar }) => {
     const [mostrarTodos, setMostrarTodos] = useState(false);
     const { handleDeleteComentario } = useComentariosHandlers();
     const { user } = useAuth();
@@ -17,53 +17,52 @@ export const Comentarios = ({ comentarios }) => {
     );
 
     const comentariosAMostrar = mostrarTodos
-    ? comentariosOrdenados
-    : comentariosOrdenados.slice(0, 1);
+        ? comentariosOrdenados
+        : comentariosOrdenados.slice(0, 1);
 
+    const handleEliminar = async (comentarioId) => {
+        try {
+        await handleDeleteComentario(comentarioId);
+        onActualizar?.(); // volver a cargar publicaciones
+        } catch (error) {
+        console.error("Error al eliminar comentario:", error);
+        }
+    };
 
     return (
-    <div className="comentarios-lista">
+        <div className="comentarios-lista">
         {comentariosAMostrar.map((comentario) => (
             <div key={comentario.id} className="comentario">
-                <img
-                    src={
-                        comentario.foto_perfil
-                            ? `${comentario.foto_perfil}`
-                            : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
-                    }
-                    alt="Foto del usuario"
-                    className="comentario-foto"
-                />
-                <div className="comentario-texto">
-                    <strong>{comentario.nombre_usuario}</strong>
-                    <p>{comentario.contenido}</p>
-                    <small>{new Date(comentario.creado_en).toLocaleString()}</small>
+            <img
+                src={
+                comentario.foto_perfil
+                    ? `${comentario.foto_perfil}`
+                    : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                }
+                alt="Foto del usuario"
+                className="comentario-foto"
+            />
+            <div className="comentario-texto">
+                <strong>{comentario.nombre_usuario}</strong>
+                <p>{comentario.contenido}</p>
+                <small>{new Date(comentario.creado_en).toLocaleString()}</small>
                 {user.id === comentario.usuario_id && (
-                    <button 
-                    onClick={() => handleDeleteComentario(comentario.id)}
+                <button
+                    onClick={() => handleEliminar(comentario.id)}
                     className="EliminarButton"
-                    >Eliminar</button>
+                >
+                    Eliminar
+                </button>
                 )}
-                </div>
+            </div>
             </div>
         ))}
 
-        {!mostrarTodos && comentarios.length > 1 && (
-            <button
-                className="buttonClass"
-                onClick={() => setMostrarTodos(true)}
-            >
-                Ver Todos
+        {comentarios.length > 1 && (
+            <button className="buttonClass" onClick={() => setMostrarTodos(!mostrarTodos)}>
+            {mostrarTodos ? "Ver Menos" : "Ver Todos"}
             </button>
         )}
-        {mostrarTodos && comentarios.length > 1 && (
-            <button
-                className="buttonClass"
-                onClick={() => setMostrarTodos(false)}
-            >
-                Ver Menos
-            </button>
-        )}
-    </div>
+        </div>
     );
 };

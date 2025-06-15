@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useComentariosHandlers } from "../../Handles/ComentariosHandlers";
 import "/css/Comentarios/NewComent.css";
 
-export const NewComent = ({ publicationId, userId, onNuevoComentario }) => {
+export const NewComent = ({ publicationId, userId, onNuevoComentario, onComentarioGuardado }) => {
   const [contenido, setContenido] = useState("");
   const { handleCreateComentario } = useComentariosHandlers();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!contenido.trim()) return;
 
     try {
@@ -19,16 +18,11 @@ export const NewComent = ({ publicationId, userId, onNuevoComentario }) => {
       });
 
       setContenido("");
-
-      if (onNuevoComentario) onNuevoComentario();
+      onNuevoComentario?.(); // cierra formulario
+      onComentarioGuardado?.(); // refresca lista
     } catch (error) {
       console.error("Error al crear comentario:", error);
     }
-  };
-
-  const handleCancel = () => {
-    setContenido("");
-    if (onNuevoComentario) onNuevoComentario();
   };
 
   return (
@@ -42,14 +36,8 @@ export const NewComent = ({ publicationId, userId, onNuevoComentario }) => {
         className="comentario-textarea"
       />
       <div className="comentarios-actions">
-        <button type="submit" className="btn-enviar-comentario">
-          Comentar
-        </button>
-        <button
-          type="button"
-          className="btn-cancelar-comentario"
-          onClick={handleCancel}
-        >
+        <button type="submit" className="btn-enviar-comentario">Comentar</button>
+        <button type="button" className="btn-cancelar-comentario" onClick={onNuevoComentario}>
           Cancelar
         </button>
       </div>

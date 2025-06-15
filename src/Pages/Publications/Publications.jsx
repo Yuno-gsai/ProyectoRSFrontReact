@@ -13,24 +13,22 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
   const [comentarioEnEdicion, setComentarioEnEdicion] = useState(null);
   const { user } = useAuth();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!singlePublication) {
-        try {
-          const publicacionesData = await handleGetUserPublications(userID);
-          const publicacionesOrdenadas = publicacionesData.sort(
-            (a, b) => new Date(b.creado_en) - new Date(a.creado_en)
-          );
-          setPublicaciones(publicacionesOrdenadas);
-        } catch (error) {
-          console.error("Error fetching publications:", error);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
+  const fetchPublications = async () => {
+    try {
+      const publicacionesData = await handleGetUserPublications(userID);
+      const publicacionesOrdenadas = publicacionesData.sort(
+        (a, b) => new Date(b.creado_en) - new Date(a.creado_en)
+      );
+      setPublicaciones(publicacionesOrdenadas);
+    } catch (error) {
+      console.error("Error fetching publications:", error);
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    if (!singlePublication) {
+      fetchPublications().finally(() => setLoading(false));
+    }
   }, [handleGetUserPublications, userID, singlePublication]);
 
   const onNuevoComentario = (publicationId) => {
@@ -43,7 +41,7 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
 
   const renderPublication = (pub) => {
     const isOwner = user && user.id === pub.usuario_id;
-    
+
     return (
       <div key={pub.id} className="publicacion-card">
         {showHeader && (
@@ -55,7 +53,6 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
               <button
                 className="btn-eliminar"
                 type="button"
-                aria-label="Eliminar publicación"
                 onClick={() => deletePublication(pub.id)}
               >
                 ×
@@ -82,7 +79,7 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
             userHasLiked={pub.likes?.some(like => like.usuario_id === user.id) || false}
             likeId={pub.likes?.find(like => like.usuario_id === user.id)?.id}
           />
-          <button 
+          <button
             className="buttonClass"
             type="button"
             onClick={() => onNuevoComentario(pub.id)}
@@ -92,13 +89,17 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
         </div>
 
         <div className="comentarios-section">
-          <Comentarios comentarios={pub.comentarios || []} />
+          <Comentarios
+            comentarios={pub.comentarios || []}
+            onActualizar={fetchPublications}
+          />
 
           {comentarioEnEdicion === pub.id && (
             <NewComent
               publicationId={pub.id}
               userId={user.id}
               onNuevoComentario={handleCancelComentario}
+              onComentarioGuardado={fetchPublications}
             />
           )}
         </div>
@@ -118,5 +119,3 @@ export const Publicacion = ({ userID, singlePublication, showHeader = true }) =>
     </div>
   );
 };
-
-
